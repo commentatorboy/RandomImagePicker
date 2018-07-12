@@ -1,0 +1,113 @@
+
+<HTML>
+<HEAD>
+<TITLE>Random Image Selector</TITLE>
+
+<SCRIPT language="javascript">
+  // Cameron Gregory - http://www.bloke.com/
+  // http://www.bloke.com/javascript/Random/
+  // This line and about must remain .. then you can use it for free...
+  //
+  // ChangeLog
+  //
+  // 
+  // Fri Apr 30 12:40:50 EDT 1999
+  //   Added target.
+  // Sat Sep 21 16:36:47 EDT 1996
+  //   Added associate URL list.
+  //
+  // Fri Sep 13 18:36:20 EDT 1996
+  //   Created from the base of Selector()
+  //
+  // Usage:
+  //  RandomImage(images)
+  //  RandomImageLong(images,iparams)
+  //  RandomImageLink(images,urls)
+  //  RandomImageLinkLongTarget(images,urls,iparams,hparams)
+  //     images		is space or comma separated file list
+  //     urls		is space or comma separated list of url's
+  //     iparams		params to add to <img>
+  //     hparams		params to add to <a href..>
+  
+  function RandomImageLong(images)
+  {
+  /* si: start index 
+  ** i: current index
+  ** ei: end index
+  ** cc: current count
+  */
+  
+   si = 0; 
+   ci=0;
+   cc=0;
+   imageSet = new Array();
+   ei = images.length;
+    for (i=1;i<ei;i++) {
+      if (images.charAt(i) == ' ' || images.charAt(i) == ',') {
+        imageSet[cc] = images.substring(si,i);
+        cc++;
+        si=i+1;
+        }
+      }
+    ind = Math.floor(Math.random() * cc);
+    document.write(
+      "<br><img width=\"300\" height=\"300\" src=img/"+imageSet[ind]+" alt=\""+imageSet[ind]+"\">" +
+      "<h1> " + imageSet[ind] + " </h1>" +
+      "<button onclick=\"RandomImageLong('"+images+"');\">again</button>"
+    );
+  }
+
+  
+  function readMultipleFiles(evt) {
+      //Retrieve all the files from the FileList object
+      var files = evt.target.files; 
+      var allFileNames = "";
+  
+      if (files) {
+          for (var i=0, f; f=files[i]; i++) {
+              var r = new FileReader();
+              var allFileNames = allFileNames + " " +  f.name;   
+          }   
+          allFileNames = allFileNames.trim();
+          RandomImageLong(allFileNames);
+      } else {
+          alert("Failed to load files"); 
+      }
+  }
+  
+  </SCRIPT>
+</HEAD>
+<BODY>
+
+<body bgcolor="#000000" text="#38CC70" link="#F3C961" vlink="F3C961" alink="#F3C961">
+
+<h2><a href=/>Bloke</a> &gt; <a href=/javascript/>JavaScript</a> &gt; RandomImage</h2>
+<input type="file" id="fileinput" multiple />
+<SCRIPT>
+//RandomImageLong("cell.jpg faye.jpg ginko.jpg gintoki.jpg jotaro.jpg kaguragintama.jpg katsura.jpg kenshiro.jpg kiki.jpg konata.jpg kotori.jpg kyon.jpg lucy.jpg lucy_elfen.jpg luffy.jpg Maka_Arubaan.jpg mewtwo.jpg misty.jpg miyuki.jpg nana.jpg naruto.jpg natsu.jpg nep_gear.jpg neptunia.jpg osaka.jpg paprika.jpg pikachu.jpg poyo.jpg rei.jpg reimu_hakurei.jpg renji.jpg rin.jpg Rosette_Christopher.jpg sakaki.jpg sakura.jpg sasuke.jpg senjogahara.jpg shinji.jpg shinobu.jpg shinpachi.jpg soma.jpg Soul.jpg spike.jpg Taiga.jpg tomo.jpg totoro.jpg tsubasa.jpg tsumugi.jpg vegeta.jpg yuno.jpg","width=300 height=300");
+</SCRIPT>
+<br>
+<i>Please <b><a href="./index.html">Reload</a></b> Me</i>!
+<hr>
+
+<h3>RandomImage</h3>
+This page written with Java Script selects a random image from a set of images. 
+If you use it, I would appreciate (but not require) a link back to my
+<a href=http://www.bloke.com/><b>home page</b></a>.  Thanks!
+See Also: <b><a href=link.html>RandomImageLink</a></b> - where you can associate
+a URL with each image.
+<!--
+<p>
+<b>Netscape 3.0</b> <i>Required</i> for this page to work.
+<p>
+-->
+
+<script>
+    document.getElementById('fileinput').addEventListener('change', readMultipleFiles, false);
+</script>
+  
+</BODY>
+</HTML>
+
+
+
