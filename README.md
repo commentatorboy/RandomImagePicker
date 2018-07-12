@@ -8,3 +8,9 @@ index.html
 random.txt
 
 inside the img folder is all of the pictures.
+
+Just run index.html in your local browser.
+
+Credits go to, from which I got some code from.
+Cameron Gregory - http://www.bloke.com/
+http://www.bloke.com/javascript/Random/
