@@ -28,7 +28,12 @@
   //     urls		is space or comma separated list of url's
   //     iparams		params to add to <img>
   //     hparams		params to add to <a href..>
-  
+
+  function GetRandomInt(max) {
+    rand = Math.floor(Math.random() * Math.floor(max));
+    return rand;
+  }
+
   function RandomImageLong(images)
   {
   /* si: start index 
@@ -36,25 +41,39 @@
   ** ei: end index
   ** cc: current count
   */
-  
-   si = 0; 
-   ci=0;
-   cc=0;
-   imageSet = new Array();
-   ei = images.length;
+    si = 0; 
+    ci=0;
+    cc=0;
+    imageSet = new Array();
+    ei = images.length;
+
     for (i=1;i<ei;i++) {
+
       if (images.charAt(i) == ' ' || images.charAt(i) == ',') {
         imageSet[cc] = images.substring(si,i);
         cc++;
         si=i+1;
-        }
       }
-    ind = Math.floor(Math.random() * cc);
-    document.write(
-      "<br><img width=\"300\" height=\"300\" src=img/"+imageSet[ind]+" alt=\""+imageSet[ind]+"\">" +
-      "<h1> " + imageSet[ind] + " </h1>" +
-      "<button onclick=\"RandomImageLong('"+images+"');\">again</button>"
-    );
+    }
+    cc--;
+    //end game
+    console.log(cc<0);
+    if(cc<0){
+      document.getElementById('output').innerHTML = "<h1>Game has ended</h1>";
+      return;
+    }
+    ind = GetRandomInt(cc);
+
+
+    //show the result
+    //splice the index from the imageSet
+    //call for new
+    document.getElementById('output').innerHTML =
+    "<br><img width=\"300\" height=\"300\" src=img/"+imageSet[ind]+" alt=\""+imageSet[ind]+"\">" +
+      "<h1> " + imageSet[ind] + " </h1>";
+    imageSet.splice(ind, 1);
+    document.getElementById('output').innerHTML +=  "<button onclick=\"RandomImageLong('"+imageSet+" "+ "');\">again</button>";
+    
   }
 
   
@@ -62,13 +81,20 @@
       //Retrieve all the files from the FileList object
       var files = evt.target.files; 
       var allFileNames = "";
-  
+
+
       if (files) {
+
           for (var i=0, f; f=files[i]; i++) {
               var r = new FileReader();
               var allFileNames = allFileNames + " " +  f.name;   
+
           }   
+
+
           allFileNames = allFileNames.trim();
+          allFileNames = allFileNames + " ";
+          
           RandomImageLong(allFileNames);
       } else {
           alert("Failed to load files"); 
@@ -83,12 +109,13 @@
 
 <h2><a href=/>Bloke</a> &gt; <a href=/javascript/>JavaScript</a> &gt; RandomImage</h2>
 <input type="file" id="fileinput" multiple />
-<SCRIPT>
-//RandomImageLong("cell.jpg faye.jpg ginko.jpg gintoki.jpg jotaro.jpg kaguragintama.jpg katsura.jpg kenshiro.jpg kiki.jpg konata.jpg kotori.jpg kyon.jpg lucy.jpg lucy_elfen.jpg luffy.jpg Maka_Arubaan.jpg mewtwo.jpg misty.jpg miyuki.jpg nana.jpg naruto.jpg natsu.jpg nep_gear.jpg neptunia.jpg osaka.jpg paprika.jpg pikachu.jpg poyo.jpg rei.jpg reimu_hakurei.jpg renji.jpg rin.jpg Rosette_Christopher.jpg sakaki.jpg sakura.jpg sasuke.jpg senjogahara.jpg shinji.jpg shinobu.jpg shinpachi.jpg soma.jpg Soul.jpg spike.jpg Taiga.jpg tomo.jpg totoro.jpg tsubasa.jpg tsumugi.jpg vegeta.jpg yuno.jpg","width=300 height=300");
-</SCRIPT>
+
 <br>
 <i>Please <b><a href="./index.html">Reload</a></b> Me</i>!
 <hr>
+
+<p id="output"></p>
+
 
 <h3>RandomImage</h3>
 This page written with Java Script selects a random image from a set of images. 
