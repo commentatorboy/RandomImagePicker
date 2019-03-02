@@ -16,8 +16,7 @@ Just run index.html in your local browser.
 Select the multiple images from that directory.
 
 Conditions:
-- do NOT only select one picture. breaks it (will be fixed)
-- do NOT have any spaces inside for each filename
+- do NOT have any spaces inside for each filename (due to how the code is structured by bloke)
 
 Credits go to, from which I got some code from.
 Cameron Gregory - http://www.bloke.com/
