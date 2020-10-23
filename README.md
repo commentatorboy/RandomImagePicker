@@ -1,6 +1,6 @@
 # RandomImagePicker
 Created for the anime convention in Denmark. Pick a series of image inputs and it will choose an image randomly
-THIS IS CURRENTLY IN BETA AND NOT YET DONE!
+And there will be no repeated images.
 
 create an img directory in the top level. Like this:
 
