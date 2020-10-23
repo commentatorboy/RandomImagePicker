@@ -1,8 +1,8 @@
 # RandomImagePicker
-Created for the anime convention in Denmark. Pick a series of image inputs and it will choose an image randomly
-And there will be no repeated images.
+Created for the anime convention in Denmark. Pick a series of image inputs and it will choose an image randomly.
+There will be no repeated images.
 
-create an img directory in the top level. Like this:
+Create an img directory in the top level. Like this:
 
 /img
 
@@ -10,7 +10,7 @@ index.html
 
 random.txt
 
-inside the img directory is all of the pictures.
+Put the images inside the img directory.
 
 Just run index.html in your local browser.
 Select the multiple images from that directory.
